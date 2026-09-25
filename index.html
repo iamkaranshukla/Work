@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#fff;font-family:'Manrope',system-ui,sans-serif;color:#12233f}
+  .h-serif{font-family:'Archivo',system-ui,sans-serif}
+  a{color:#1E4C97;text-decoration:none}
+  a:hover{color:#143A73}
+  .ph{background:repeating-linear-gradient(135deg,#f3f7fb,#f3f7fb 11px,#eaf0f6 11px,#eaf0f6 22px);border:1px solid #e4ebf3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#8496ac;font-family:ui-monospace,Menlo,monospace}
+</style>
+</helmet>
+<div style="max-width:1280px;margin:0 auto">
+
+  <!-- ============ NAV ============ -->
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px clamp(20px,4vw,48px);border-bottom:1px solid #eef1f5;position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);z-index:20">
+    <img src="assets/fourways-logo.png" alt="Fourways" style="height:clamp(32px,4vw,42px);width:auto;display:block;flex:none">
+    <div style="display:flex;align-items:center;gap:clamp(14px,2.4vw,34px);font-size:14px;font-weight:600;color:#2a3a55;flex-wrap:wrap;justify-content:flex-end;align-items:center;row-gap:10px">
+      <a href="#products">Products</a><a href="#why">Why concentrate</a><a href="#impact">Sustainability</a><a href="#wholesale">Wholesale</a>
+      <a href="#products" style="background:#1E4C97;color:#fff;padding:11px 22px;border-radius:8px;font-weight:700;white-space:nowrap">Shop now</a>
+      <button type="button" onClick="{{ openCart }}" style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #cdd8e6;color:#12233f;padding:10px 16px;border-radius:8px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap" style-hover="border-color:#1E4C97">
+        Cart
+        <span style="min-width:21px;height:21px;display:inline-flex;align-items:center;justify-content:center;background:#6BB43C;color:#0f2b06;border-radius:11px;font-size:12px;font-weight:800;padding:0 6px">{{ cartCount }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,4vw,56px);padding:clamp(40px,6vw,70px) clamp(20px,4vw,48px) clamp(40px,5vw,60px);align-items:center">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:#eef6e6;color:#3B6D11;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:20px;margin-bottom:26px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#6BB43C"></span>Plant-based · Powder-to-liquid &amp; tablets
+      </div>
+      <h1 class="h-serif" style="font-size:clamp(38px,6.2vw,60px);line-height:1.02;letter-spacing:-.02em;color:#12233f;margin:0 0 16px;font-weight:800">Same clean.<br>Ninety percent<br>less plastic.</h1>
+      <p style="display:flex;align-items:center;gap:9px;font-size:16px;font-weight:700;color:#3B6D11;margin:0 0 22px">
+        <span style="width:8px;height:8px;border-radius:50%;background:#6BB43C;flex:none"></span>Non-toxic, plant-based &amp; fully biodegradable — safe for your home and the planet.
+      </p>
+      <p style="font-size:18px;line-height:1.6;color:#4a5975;margin:0 0 34px;max-width:460px">Fourways concentrates and dissolvable tablets deliver professional-grade cleaning power — with none of the water, weight, or waste of a bottled cleaner.</p>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <a href="#products" data-cart-ignore="1" style="background:#1E4C97;color:#fff;padding:16px 30px;border-radius:9px;font-size:16px;font-weight:700">Shop the range</a>
+        <a href="#why" style="color:#1E4C97;padding:16px 8px;font-size:16px;font-weight:700">See the proof →</a>
+      </div>
+      <div style="display:flex;gap:clamp(18px,3vw,28px);margin-top:40px;padding-top:26px;border-top:1px solid #eef1f5;flex-wrap:wrap">
+        <div><div class="h-serif" style="font-size:30px;font-weight:800;color:#1E4C97">100%</div><div style="font-size:13px;color:#6a7893;margin-top:2px">Biodegradable</div></div>
+        <div><div class="h-serif" style="font-size:30px;font-weight:800;color:#1E4C97">1 tab</div><div style="font-size:13px;color:#6a7893;margin-top:2px">= 1 full bottle</div></div>
+        <div><div class="h-serif" style="font-size:30px;font-weight:800;color:#1E4C97">-84%</div><div style="font-size:13px;color:#6a7893;margin-top:2px">Shipping CO₂</div></div>
+      </div>
+    </div>
+    <div class="ph" style="aspect-ratio:1/1;border-radius:16px">
+      <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #b9c6d8"></div>
+      <span style="font-size:12px;letter-spacing:.02em">product hero shot</span>
+      <span style="font-size:11px;color:#a7b4c6">tablet + concentrate + reusable bottle</span>
+    </div>
+  </div>
+
+  <!-- ============ STAT RIBBON ============ -->
+  <div id="impact" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));background:#12233f;color:#fff;border-radius:16px;margin:0 clamp(20px,4vw,48px);overflow:hidden">
+    <div style="padding:28px 32px;border-right:1px solid rgba(255,255,255,.10)"><div class="h-serif" style="font-size:28px;font-weight:800">6.2 bottles</div><div style="font-size:13px;color:#9fb0cb;margin-top:3px">saved per pack, per year</div></div>
+    <div style="padding:28px 32px;border-right:1px solid rgba(255,255,255,.10)"><div class="h-serif" style="font-size:28px;font-weight:800">-84% CO₂</div><div style="font-size:13px;color:#9fb0cb;margin-top:3px">no water shipped</div></div>
+    <div style="padding:28px 32px;border-right:1px solid rgba(255,255,255,.10)"><div class="h-serif" style="font-size:28px;font-weight:800">₹X / wash</div><div style="font-size:13px;color:#9fb0cb;margin-top:3px">vs ₹Y traditional</div></div>
+    <div style="padding:28px 32px"><div class="h-serif" style="font-size:28px;font-weight:800">Zero</div><div style="font-size:13px;color:#9fb0cb;margin-top:3px">toxic residue</div></div>
+  </div>
+
+  <!-- ============ THE PROBLEM: HARMFUL CHEMICALS ============ -->
+  <div style="margin:clamp(48px,7vw,80px) clamp(20px,4vw,48px) 0;background:#0f1d33;border-radius:16px;padding:clamp(36px,5vw,56px) clamp(24px,4vw,48px);color:#fff">
+    <div style="max-width:640px;margin-bottom:40px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ff8f6b;margin-bottom:14px">The problem we're cleaning up</div>
+      <h2 class="h-serif" style="font-size:clamp(28px,4.4vw,38px);line-height:1.1;letter-spacing:-.02em;margin:0 0 14px;font-weight:800">Conventional cleaners don't disappear down the drain.</h2>
+      <p style="font-size:17px;line-height:1.6;color:#9fb0cb;margin:0">The surfactants, phosphates and plastics in ordinary household cleaners end up in our waterways, air and soil. Every figure below is editable.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px">
+      <div style="border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:26px 22px">
+        <div class="h-serif" style="font-size:42px;font-weight:800;color:#ff8f6b;line-height:1">35B</div>
+        <div style="font-weight:700;font-size:15px;margin:10px 0 6px">Plastic bottles / year</div>
+        <div style="font-size:14px;color:#9fb0cb;line-height:1.5">Cleaning-product bottles sent to landfill, most never recycled.</div>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:26px 22px">
+        <div class="h-serif" style="font-size:42px;font-weight:800;color:#ff8f6b;line-height:1">90%</div>
+        <div style="font-weight:700;font-size:15px;margin:10px 0 6px">Is just water</div>
+        <div style="font-size:14px;color:#9fb0cb;line-height:1.5">Shipped in heavy trucks, burning fuel to move water you already have.</div>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:26px 22px">
+        <div class="h-serif" style="font-size:42px;font-weight:800;color:#ff8f6b;line-height:1">2M+</div>
+        <div style="font-weight:700;font-size:15px;margin:10px 0 6px">Tonnes of chemicals</div>
+        <div style="font-size:14px;color:#9fb0cb;line-height:1.5">Phosphates &amp; synthetic surfactants entering waterways annually.</div>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:26px 22px">
+        <div class="h-serif" style="font-size:42px;font-weight:800;color:#ff8f6b;line-height:1">40%</div>
+        <div style="font-weight:700;font-size:15px;margin:10px 0 6px">Aquatic toxicity</div>
+        <div style="font-size:14px;color:#9fb0cb;line-height:1.5">Of common cleaner ingredients are harmful to fish and river life.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ WHY CONCENTRATE / STATS DEEP DIVE ============ -->
+  <div id="why" style="padding:clamp(48px,7vw,80px) clamp(20px,4vw,48px) 20px">
+    <div style="max-width:620px;margin-bottom:48px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6BB43C;margin-bottom:14px">The proof</div>
+      <h2 class="h-serif" style="font-size:clamp(28px,4.6vw,40px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;font-weight:800">Why a nation is switching to concentrate</h2>
+      <p style="font-size:17px;line-height:1.6;color:#4a5975;margin:0">A standard cleaner is up to 90% water — shipped in plastic, across the country, to your shelf. Remove the water and everything changes. Every figure below is editable.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px">
+      <div style="border:1px solid #e8edf3;border-radius:14px;padding:28px 24px">
+        <div class="h-serif" style="font-size:44px;font-weight:800;color:#1E4C97;line-height:1">90%</div>
+        <div style="font-weight:700;font-size:15px;margin:10px 0 6px">Less plastic</div>
+        <div style="font-size:14px;color:#6a7893;line-height:1.5">Refillable bottles replace single-use ones, wash after wash.</div>
+      </div>
+      <div style="border:1px solid #e8edf3;border-radius:14px;padding:28px 24px">
+        <div class="h-serif" style="font-size:44px;font-weight:800;color:#1E4C97;line-height:1">-84%</div>
+        <div style="font-weight:700;font-size:15px;margin:10px 0 6px">Shipping emissions</div>
+        <div style="font-size:14px;color:#6a7893;line-height:1.5">No water means lighter freight and far fewer trucks on the road.</div>
+      </div>
+      <div style="border:1px solid #e8edf3;border-radius:14px;padding:28px 24px">
+        <div class="h-serif" style="font-size:44px;font-weight:800;color:#1E4C97;line-height:1">100%</div>
+        <div style="font-weight:700;font-size:15px;margin:10px 0 6px">Biodegradable</div>
+        <div style="font-size:14px;color:#6a7893;line-height:1.5">Plant-based formula, non-toxic, safe down the drain.</div>
+      </div>
+      <div style="border:1px solid #e8edf3;border-radius:14px;padding:28px 24px">
+        <div class="h-serif" style="font-size:44px;font-weight:800;color:#1E4C97;line-height:1">4.5L</div>
+        <div style="font-weight:700;font-size:15px;margin:10px 0 6px">Water saved / pack</div>
+        <div style="font-size:14px;color:#6a7893;line-height:1.5">You add tap water at home — we never ship it to you.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <div style="padding:clamp(36px,5vw,56px) clamp(20px,4vw,48px) clamp(48px,7vw,80px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0;border:1px solid #eef1f5;border-radius:16px;overflow:hidden">
+      <div style="padding:34px 40px;border-right:1px solid #eef1f5;display:flex;gap:16px;align-items:flex-start">
+        <span class="h-serif" style="font-size:22px;font-weight:800;color:#6BB43C">01</span>
+        <div><div style="font-weight:700;font-size:16px;margin-bottom:4px">Drop</div><div style="font-size:14px;color:#6a7893;line-height:1.5">One tablet or powder scoop into your reusable Fourways bottle.</div></div>
+      </div>
+      <div style="padding:34px 40px;border-right:1px solid #eef1f5;display:flex;gap:16px;align-items:flex-start">
+        <span class="h-serif" style="font-size:22px;font-weight:800;color:#6BB43C">02</span>
+        <div><div style="font-weight:700;font-size:16px;margin-bottom:4px">Fill</div><div style="font-size:14px;color:#6a7893;line-height:1.5">Add tap water. It dissolves in about 60 seconds.</div></div>
+      </div>
+      <div style="padding:34px 40px;display:flex;gap:16px;align-items:flex-start">
+        <span class="h-serif" style="font-size:22px;font-weight:800;color:#6BB43C">03</span>
+        <div><div style="font-weight:700;font-size:16px;margin-bottom:4px">Clean</div><div style="font-size:14px;color:#6a7893;line-height:1.5">Full-strength cleaner. Refill the same bottle forever.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PRODUCT CATALOGUE ============ -->
+  <div id="products" style="padding:20px clamp(20px,4vw,48px) 40px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:34px;gap:24px;flex-wrap:wrap">
+      <div style="max-width:560px">
+        <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6BB43C;margin-bottom:14px">The range</div>
+        <h2 class="h-serif" style="font-size:clamp(28px,4.6vw,40px);line-height:1.08;letter-spacing:-.02em;margin:0 0 12px;font-weight:800">One system. Every room.</h2>
+        <p style="font-size:17px;line-height:1.6;color:#4a5975;margin:0">Six cleaners, three formats — powder-to-liquid, dissolvable tablets and reusable bottles.</p>
+      </div>
+      <div style="display:flex;gap:8px;font-size:13px;font-weight:600;color:#2a3a55;flex-wrap:wrap">
+        <span style="background:#eef6e6;color:#3B6D11;padding:7px 14px;border-radius:20px">Powder-to-liquid</span>
+        <span style="background:#f2f6fb;padding:7px 14px;border-radius:20px">Tablets</span>
+        <span style="background:#f2f6fb;padding:7px 14px;border-radius:20px">Reusable bottles</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px">
+      <sc-for list="{{ products }}" as="p" hint-placeholder-count="6">
+        <div style="border:1px solid #e8edf3;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+          <div class="ph" style="aspect-ratio:4/3"><span style="font-size:12px">product photo</span></div>
+          <div style="padding:22px 24px">
+            <span style="display:inline-block;background:#eef6e6;color:#3B6D11;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:20px;margin-bottom:12px">{{ p.tag }}</span>
+            <div class="h-serif" style="font-size:21px;font-weight:800;color:#12233f;margin-bottom:6px">{{ p.name }}</div>
+            <div style="font-size:14px;color:#6a7893;line-height:1.5;margin-bottom:18px">{{ p.blurb }}</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <span class="h-serif" style="font-size:18px;font-weight:800;color:#1E4C97">{{ p.price }}</span>
+              <button type="button" onClick="{{ p.add }}" style="background:#1E4C97;color:#fff;padding:10px 18px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;border:none;cursor:pointer;white-space:nowrap" style-hover="background:#143A73">{{ p.cta }}</button>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- ============ COMPARISON ============ -->
+  <div style="padding:clamp(48px,7vw,70px) clamp(20px,4vw,48px)">
+    <div style="max-width:620px;margin-bottom:36px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6BB43C;margin-bottom:14px">Head to head</div>
+      <h2 class="h-serif" style="font-size:clamp(28px,4.6vw,40px);line-height:1.08;letter-spacing:-.02em;margin:0;font-weight:800">Fourways vs. the bottle under your sink</h2>
+    </div>
+    <div style="display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#9aa7bd;margin-bottom:12px">Swipe to compare<span aria-hidden="true">→</span></div>
+    <div style="border:1px solid #e8edf3;border-radius:16px;overflow:hidden">
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(to left,rgba(18,35,63,.10),rgba(18,35,63,0) 34px) right center/34px 100% no-repeat local">
+      <div style="display:grid;grid-template-columns:minmax(150px,1.4fr) minmax(135px,1fr) minmax(135px,1fr);min-width:420px">
+        <div style="padding:18px clamp(12px,2.2vw,28px);background:#f8fafc"></div>
+        <div style="padding:18px clamp(12px,2.2vw,28px);background:#f8fafc;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#9aa7bd;overflow-wrap:break-word;border-left:1px solid #eef1f5">Traditional</div>
+        <div style="padding:18px clamp(12px,2.2vw,28px);background:#12233f;color:#fff;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;overflow-wrap:break-word">Fourways</div>
+      </div>
+      <sc-for list="{{ compareRows }}" as="r" hint-placeholder-count="6">
+        <div style="display:grid;grid-template-columns:minmax(150px,1.4fr) minmax(135px,1fr) minmax(135px,1fr);min-width:420px;border-top:1px solid #eef1f5">
+          <div style="padding:16px clamp(12px,2.2vw,28px);overflow-wrap:break-word;font-weight:600;font-size:15px;color:#12233f">{{ r.label }}</div>
+          <div style="padding:16px clamp(12px,2.2vw,28px);overflow-wrap:break-word;font-size:15px;color:#6a7893;border-left:1px solid #eef1f5">{{ r.old }}</div>
+          <div style="padding:16px clamp(12px,2.2vw,28px);overflow-wrap:break-word;font-size:15px;color:#2f4a1a;font-weight:600;background:#f4f9ee">{{ r.fw }}</div>
+        </div>
+      </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ WHOLESALE / B2B CTA ============ -->
+  <div id="wholesale" style="padding:20px clamp(20px,4vw,48px) clamp(56px,8vw,90px)">
+    <div style="background:linear-gradient(135deg,#12233f,#1E4C97);border-radius:20px;padding:clamp(34px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,4vw,48px);align-items:center;color:#fff">
+      <div>
+        <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8fd35a;margin-bottom:16px">Retail &amp; wholesale</div>
+        <h2 class="h-serif" style="font-size:clamp(27px,4.2vw,38px);line-height:1.1;letter-spacing:-.02em;margin:0 0 16px;font-weight:800">Stock a cleaning range your shelves — and buyers — will love.</h2>
+        <p style="font-size:17px;line-height:1.6;color:#c7d3e6;margin:0 0 30px;max-width:460px">Lighter freight, smaller shelf footprint, higher margin per SKU. Request the wholesale deck and trade pricing.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a href="#products" style="background:#6BB43C;color:#0f2b06;padding:15px 30px;border-radius:9px;font-size:16px;font-weight:700">Shop now</a>
+          <a href="#wholesale" style="background:rgba(255,255,255,.12);color:#fff;padding:15px 30px;border-radius:9px;font-size:16px;font-weight:700">Become a stockist</a>
+        </div>
+      </div>
+      <div class="ph" style="aspect-ratio:4/3;border-radius:14px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.06) 11px,rgba(255,255,255,.02) 11px,rgba(255,255,255,.02) 22px);border-color:rgba(255,255,255,.16);color:#9fb0cb">
+        <span style="font-size:12px">retail / display shot</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CART DRAWER ============ -->
+  <sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:60;display:flex;justify-content:flex-end">
+      <div onClick="{{ closeCart }}" style="position:absolute;inset:0;background:rgba(15,29,51,.42);backdrop-filter:blur(2px)"></div>
+      <div style="position:relative;width:min(420px,100%);height:100%;background:#fff;box-shadow:-8px 0 40px rgba(15,29,51,.22);display:flex;flex-direction:column">
+
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 26px;border-bottom:1px solid #eef1f5;flex:none">
+          <div class="h-serif" style="font-size:20px;font-weight:800;color:#12233f">{{ drawerTitle }}</div>
+          <button type="button" onClick="{{ closeCart }}" style="background:#f2f6fb;border:none;width:34px;height:34px;border-radius:8px;font-size:17px;color:#4a5975;cursor:pointer;font-family:inherit" style-hover="background:#e6edf6">✕</button>
+        </div>
+
+        <!-- ---- CART STAGE ---- -->
+        <sc-if value="{{ isCartStage }}" hint-placeholder-val="{{ true }}">
+          <div style="flex:1;overflow-y:auto;padding:8px 26px">
+            <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:60px 0;text-align:center">
+                <div style="font-size:15px;font-weight:700;color:#12233f;margin-bottom:6px">Your cart is empty</div>
+                <div style="font-size:14px;color:#6a7893;line-height:1.5">Add a concentrate or tablet pack to get started.</div>
+              </div>
+            </sc-if>
+            <sc-for list="{{ lines }}" as="l" hint-placeholder-count="2">
+              <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid #f2f6fb">
+                <div class="ph" style="width:64px;height:64px;border-radius:10px;flex:none"><span style="font-size:9px">photo</span></div>
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:14.5px;font-weight:700;color:#12233f;line-height:1.3">{{ l.name }}</div>
+                  <div style="font-size:12.5px;color:#6a7893;margin:3px 0 10px">{{ l.tag }}</div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <div style="display:flex;align-items:center;border:1px solid #e0e8f2;border-radius:8px;overflow:hidden">
+                      <button type="button" onClick="{{ l.dec }}" style="width:30px;height:30px;border:none;background:#fff;color:#1E4C97;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit" style-hover="background:#f2f6fb">−</button>
+                      <span style="min-width:28px;text-align:center;font-size:14px;font-weight:700;color:#12233f">{{ l.qty }}</span>
+                      <button type="button" onClick="{{ l.inc }}" style="width:30px;height:30px;border:none;background:#fff;color:#1E4C97;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit" style-hover="background:#f2f6fb">+</button>
+                    </div>
+                    <button type="button" onClick="{{ l.remove }}" style="background:none;border:none;font-family:inherit;font-size:12.5px;font-weight:600;color:#9aa7bd;cursor:pointer;padding:4px 2px" style-hover="color:#c2543b">Remove</button>
+                  </div>
+                </div>
+                <div class="h-serif" style="font-size:15px;font-weight:800;color:#12233f;flex:none">{{ l.lineTotal }}</div>
+              </div>
+            </sc-for>
+            <sc-if value="{{ hasItems }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;align-items:flex-start;gap:9px;background:#f4f9ee;border-radius:10px;padding:14px 16px;margin:18px 0 8px">
+                <span style="width:7px;height:7px;border-radius:50%;background:#6BB43C;flex:none;margin-top:6px"></span>
+                <div style="font-size:13px;line-height:1.5;color:#2f4a1a;font-weight:600">{{ impactLine }}</div>
+              </div>
+            </sc-if>
+          </div>
+          <div style="flex:none;border-top:1px solid #eef1f5;padding:20px 26px">
+            <div style="display:flex;justify-content:space-between;font-size:14px;color:#6a7893;margin-bottom:7px"><span>Subtotal</span><span>{{ subtotal }}</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:14px;color:#6a7893;margin-bottom:12px"><span>Shipping</span><span>{{ shipping }}</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:12px;border-top:1px solid #eef1f5;margin-bottom:16px">
+              <span style="font-size:15px;font-weight:700;color:#12233f">Total</span>
+              <span class="h-serif" style="font-size:24px;font-weight:800;color:#1E4C97">{{ total }}</span>
+            </div>
+            <button type="button" onClick="{{ goCheckout }}" style="width:100%;background:#1E4C97;color:#fff;border:none;padding:16px;border-radius:9px;font-family:inherit;font-size:15.5px;font-weight:700;cursor:pointer" style-hover="background:#143A73">Checkout</button>
+            <div style="text-align:center;font-size:11.5px;color:#9aa7bd;margin-top:10px">Prototype — no payment is taken</div>
+          </div>
+        </sc-if>
+
+        <!-- ---- CHECKOUT STAGE ---- -->
+        <sc-if value="{{ isCheckoutStage }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;overflow-y:auto;padding:22px 26px">
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:700;color:#4a5975">Full name
+                <input type="text" placeholder="Priya Sharma" style="border:1px solid #dfe7f1;border-radius:8px;padding:12px 14px;font-family:inherit;font-size:14.5px;color:#12233f;outline:none" style-focus="border-color:#1E4C97">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:700;color:#4a5975">Email
+                <input type="email" placeholder="priya@example.com" style="border:1px solid #dfe7f1;border-radius:8px;padding:12px 14px;font-family:inherit;font-size:14.5px;color:#12233f;outline:none" style-focus="border-color:#1E4C97">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:700;color:#4a5975">Delivery address
+                <textarea rows="3" placeholder="Flat, street, city, PIN" style="border:1px solid #dfe7f1;border-radius:8px;padding:12px 14px;font-family:inherit;font-size:14.5px;color:#12233f;outline:none;resize:vertical" style-focus="border-color:#1E4C97"></textarea>
+              </label>
+              <div style="font-size:12.5px;font-weight:700;color:#4a5975;margin-top:4px">Payment</div>
+              <div style="border:1px solid #dfe7f1;border-radius:10px;overflow:hidden">
+                <div style="display:flex;align-items:center;gap:10px;padding:14px;border-bottom:1px solid #eef1f5;background:#f8fbf5">
+                  <span style="width:16px;height:16px;border-radius:50%;border:5px solid #6BB43C;flex:none"></span>
+                  <span style="font-size:14px;font-weight:700;color:#12233f">Card / UPI</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:14px">
+                  <span style="width:16px;height:16px;border-radius:50%;border:1.5px solid #cdd8e6;flex:none"></span>
+                  <span style="font-size:14px;font-weight:600;color:#6a7893">Cash on delivery</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="flex:none;border-top:1px solid #eef1f5;padding:20px 26px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px">
+              <span style="font-size:15px;font-weight:700;color:#12233f">Total</span>
+              <span class="h-serif" style="font-size:24px;font-weight:800;color:#1E4C97">{{ total }}</span>
+            </div>
+            <button type="button" onClick="{{ placeOrder }}" style="width:100%;background:#6BB43C;color:#0f2b06;border:none;padding:16px;border-radius:9px;font-family:inherit;font-size:15.5px;font-weight:800;cursor:pointer" style-hover="background:#5da231">Place order</button>
+            <button type="button" onClick="{{ backToCart }}" style="width:100%;background:none;border:none;font-family:inherit;font-size:13px;font-weight:600;color:#6a7893;cursor:pointer;padding:12px 0 0">← Back to cart</button>
+          </div>
+        </sc-if>
+
+        <!-- ---- CONFIRMATION STAGE ---- -->
+        <sc-if value="{{ isDoneStage }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 34px">
+            <div style="width:62px;height:62px;border-radius:50%;background:#eef6e6;color:#3B6D11;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;margin-bottom:22px">✓</div>
+            <div class="h-serif" style="font-size:25px;font-weight:800;color:#12233f;margin-bottom:10px">Order confirmed</div>
+            <div style="font-size:14.5px;line-height:1.6;color:#6a7893;margin-bottom:8px">We've emailed your receipt. Your concentrates ship in a compostable mailer within 2 working days.</div>
+            <div style="font-size:13px;font-weight:700;color:#1E4C97;margin-bottom:26px">Order {{ orderNo }}</div>
+            <div style="background:#f4f9ee;border-radius:10px;padding:16px 18px;font-size:13.5px;line-height:1.5;color:#2f4a1a;font-weight:600;margin-bottom:26px">{{ orderImpactLine }}</div>
+            <button type="button" onClick="{{ closeCart }}" style="background:#1E4C97;color:#fff;border:none;padding:14px 30px;border-radius:9px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer" style-hover="background:#143A73">Keep shopping</button>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ FOOTER ============ -->
+  <div style="border-top:1px solid #eef1f5;padding:40px clamp(20px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;color:#6a7893;font-size:14px">
+    <img src="assets/fourways-logo.png" alt="Fourways" style="height:34px;width:auto">
+    <div style="display:flex;gap:clamp(16px,2.4vw,28px);font-weight:600;color:#2a3a55;flex-wrap:wrap"><a href="#products">Products</a><a href="#why">Why concentrate</a><a href="#impact">Sustainability</a><a href="#wholesale">Wholesale</a></div>
+    <span>© 2026 Fourways. Care from all directions.</span>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { cart: {}, drawerOpen: false, stage: "cart", justAdded: null, orderNo: null, orderUnits: 0, orderTotal: null };
+
+  // Edit these prices — amounts are in ₹ and drive every total in the cart.
+  catalogue() {
+    return [
+      { id: "dish", name: "Dishwash concentrate", tag: "Powder-to-liquid", amount: 249, blurb: "Cuts grease, gentle on hands. One sachet makes a full bottle." },
+      { id: "surface", name: "Surface / multipurpose", tag: "Tablets", amount: 299, blurb: "Drop, dissolve, spray. Streak-free on any sealed surface." },
+      { id: "floor", name: "Floor cleaner", tag: "Powder-to-liquid", amount: 279, blurb: "Big-mop dilution from a single lightweight scoop." },
+      { id: "laundry", name: "Laundry", tag: "Tablets", amount: 399, blurb: "Pre-dosed plant-based tabs. No jug, no plastic scoop." },
+      { id: "glass", name: "Glass & mirror", tag: "Tablets", amount: 249, blurb: "Crystal clarity, zero residue, ammonia-free." },
+      { id: "bath", name: "Bathroom / toilet", tag: "Powder-to-liquid", amount: 299, blurb: "Limescale and grime, tackled without harsh chlorine." },
+    ];
+  }
+
+  money(n) { return "₹" + n.toLocaleString("en-IN"); }
+
+  add(id) {
+    this.setState((s) => ({
+      cart: Object.assign({}, s.cart, { [id]: (s.cart[id] || 0) + 1 }),
+      drawerOpen: true,
+      stage: "cart",
+      justAdded: id,
+    }));
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ justAdded: null }), 1400);
+  }
+
+  setQty(id, qty) {
+    this.setState((s) => {
+      const cart = Object.assign({}, s.cart);
+      if (qty <= 0) delete cart[id]; else cart[id] = qty;
+      return { cart };
+    });
+  }
+
+  renderVals() {
+    const cart = this.state.cart;
+    const stage = this.state.stage;
+    const cat = this.catalogue();
+
+    const products = cat.map((p) => ({
+      name: p.name,
+      tag: p.tag,
+      blurb: p.blurb,
+      price: this.money(p.amount),
+      cta: this.state.justAdded === p.id ? "Added ✓" : "Add to cart",
+      add: () => this.add(p.id),
+    }));
+
+    const lines = cat.filter((p) => cart[p.id]).map((p) => ({
+      name: p.name,
+      tag: p.tag,
+      qty: cart[p.id],
+      lineTotal: this.money(p.amount * cart[p.id]),
+      inc: () => this.setQty(p.id, cart[p.id] + 1),
+      dec: () => this.setQty(p.id, cart[p.id] - 1),
+      remove: () => this.setQty(p.id, 0),
+    }));
+
+    const units = lines.reduce((n, l) => n + l.qty, 0);
+    const sub = cat.reduce((n, p) => n + p.amount * (cart[p.id] || 0), 0);
+    const ship = units === 0 || sub >= 599 ? 0 : 49;
+
+    const titles = { cart: "Your cart", checkout: "Checkout", done: "Thank you" };
+    const impact = (n) => "This order replaces " + n * 3 + " single-use plastic bottles and ships " + n * 2 + "kg lighter — no water in the box.";
+
+    return {
+      products,
+      lines,
+      cartCount: units,
+      drawerOpen: this.state.drawerOpen,
+      drawerTitle: titles[stage],
+      isCartStage: stage === "cart",
+      isCheckoutStage: stage === "checkout",
+      isDoneStage: stage === "done",
+      isEmpty: units === 0,
+      hasItems: units > 0,
+      subtotal: this.money(sub),
+      shipping: ship === 0 ? (units === 0 ? "—" : "Free") : this.money(ship),
+      total: this.money(sub + ship),
+      impactLine: impact(units),
+      orderImpactLine: impact(this.state.orderUnits || 0),
+      orderNo: this.state.orderNo,
+      openCart: () => this.setState({ drawerOpen: true, stage: "cart" }),
+      closeCart: () => this.setState({ drawerOpen: false }),
+      goCheckout: () => { if (units > 0) this.setState({ stage: "checkout" }); },
+      backToCart: () => this.setState({ stage: "cart" }),
+      placeOrder: () => this.setState({ stage: "done", cart: {}, orderUnits: units, orderTotal: this.money(sub + ship), orderNo: "FW-" + Math.floor(100000 + Math.random() * 899999) }),
+      compareRows: this.compareRows(),
+    };
+  }
+
+  compareRows() {
+    return [
+      { label: "Water shipped to you", old: "Up to 90%", fw: "0% — you add tap water" },
+      { label: "Plastic per year", old: "6+ single-use bottles", fw: "1 bottle, refilled forever" },
+      { label: "Formula", old: "Synthetic surfactants", fw: "Plant-based, biodegradable" },
+      { label: "Shipping emissions", old: "Heavy liquid freight", fw: "-84% lighter" },
+      { label: "Cost per wash", old: "₹Y", fw: "₹X — lower" },
+      { label: "Residue", old: "Chemical film", fw: "Zero toxic residue" },
+    ];
+  }
+}
+</script>
+</body>
+</html>
